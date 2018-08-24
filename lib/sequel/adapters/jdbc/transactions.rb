@@ -17,15 +17,15 @@ module Sequel
       # Check the JDBC DatabaseMetaData for support for serializable isolation,
       # since that's the value most people will use.
       def supports_transaction_isolation_levels?
-        synchronize{|conn| conn.getMetaData.supportsTransactionIsolationLevel(JavaSQL::Connection::TRANSACTION_SERIALIZABLE)}
+        synchronize{|conn| conn.getMetaData.supportsTransactionIsolationLevel(Java::JavaSQL::Connection::TRANSACTION_SERIALIZABLE)}
       end
 
       private
 
-      JDBC_TRANSACTION_ISOLATION_LEVELS = {:uncommitted=>JavaSQL::Connection::TRANSACTION_READ_UNCOMMITTED,
-        :committed=>JavaSQL::Connection::TRANSACTION_READ_COMMITTED,
-        :repeatable=>JavaSQL::Connection::TRANSACTION_REPEATABLE_READ,
-        :serializable=>JavaSQL::Connection::TRANSACTION_SERIALIZABLE}.freeze
+      JDBC_TRANSACTION_ISOLATION_LEVELS = {:uncommitted=>Java::JavaSQL::Connection::TRANSACTION_READ_UNCOMMITTED,
+        :committed=>Java::JavaSQL::Connection::TRANSACTION_READ_COMMITTED,
+        :repeatable=>Java::JavaSQL::Connection::TRANSACTION_REPEATABLE_READ,
+        :serializable=>Java::JavaSQL::Connection::TRANSACTION_SERIALIZABLE}.freeze
 
       # Set the transaction isolation level on the given connection using
       # the JDBC API.
